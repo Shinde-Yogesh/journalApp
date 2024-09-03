@@ -1,5 +1,6 @@
 package com.practice.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,12 @@ public class JournalEntryControllerV2 {
 	
 	@GetMapping("/all-entries")
 	public List<JournalEntry> getAll() {
-		return null;
+		return journalEntryService.getAll();
 	}
 
 	@PostMapping()
 	public boolean createEntry(@RequestBody JournalEntry journalEntry) {
+		journalEntry.setDate(LocalDateTime.now());
 		journalEntryService.saveEntry(journalEntry);
 		return true;
 	}
