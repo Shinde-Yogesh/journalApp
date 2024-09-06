@@ -1,6 +1,5 @@
 package com.practice.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,17 +67,17 @@ public class JournalEntryControllerV2 {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-//	@PutMapping("id/{myId}")
-//	public ResponseEntity<?> updateById(@PathVariable ObjectId myId, @RequestBody JournalEntry newEntry) {
-//		JournalEntry old = journalEntryService.findById(myId).orElse(null);
-//		if (old != null) {
-//			old.setTitle(newEntry.getTitle() != null && !newEntry.getTitle().equals("") ? newEntry.getTitle()
-//					: old.getTitle());
-//			old.setContent(newEntry.getContent() != null && !newEntry.getContent().equals("") ? newEntry.getContent()
-//					: old.getContent());
-//			journalEntryService.saveEntry(old);
-//			return new ResponseEntity<>(old, HttpStatus.OK);
-//		}
-//		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//	}
+	@PutMapping("id/{userName}/{myId}")
+	public ResponseEntity<?> updateById(@PathVariable ObjectId myId, @RequestBody JournalEntry newEntry,@PathVariable String userName) {
+		JournalEntry old = journalEntryService.findById(myId).orElse(null);
+		if (old != null) {
+			old.setTitle(newEntry.getTitle() != null && !newEntry.getTitle().equals("") ? newEntry.getTitle()
+					: old.getTitle());
+			old.setContent(newEntry.getContent() != null && !newEntry.getContent().equals("") ? newEntry.getContent()
+					: old.getContent());
+			journalEntryService.saveEntry(old);
+			return new ResponseEntity<>(old, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 }

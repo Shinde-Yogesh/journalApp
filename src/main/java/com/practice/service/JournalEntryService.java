@@ -28,6 +28,9 @@ public class JournalEntryService {
 		user.getJournalEntries().add(saved);
 		userService.saveEntry(user);
 	}
+	public void saveEntry(JournalEntry journalEntry) {
+		journalEntryRepository.save(journalEntry);
+	}
 	
 	public List<JournalEntry> getAll()
 	{
@@ -47,7 +50,7 @@ public class JournalEntryService {
 	public void deleteById(ObjectId id, String userName)
 	{
 		User user = userService.findByUserName(userName);
-		user.getJournalEntries().removeIf(x -> x.getId().equals(id));
+		user.getJournalEntries().removeIf(x -> x.getId().equals(id)); //this code deleted in both table (means constancy on current transaction)
 		userService.saveEntry(user);
 		journalEntryRepository.deleteById(id);
 	}
