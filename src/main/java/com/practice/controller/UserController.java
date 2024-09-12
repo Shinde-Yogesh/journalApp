@@ -42,7 +42,6 @@ public class UserController {
 		}
 	}
 	
-	
 	@PutMapping("/{userName}")
 	public ResponseEntity<?> updateById(@RequestBody User user,@PathVariable String userName) {
 		User userInDb = userService.findByUserName(userName);
