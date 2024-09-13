@@ -54,5 +54,4 @@ public class JournalEntryService {
 		userService.saveEntry(user);
 		journalEntryRepository.deleteById(id);
 	}
-
 }
