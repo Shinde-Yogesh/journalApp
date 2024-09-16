@@ -58,7 +58,6 @@ public class JournalEntryControllerV2 {
 			return new ResponseEntity<>(jounalEntry.get(), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
 	}
 
 	@DeleteMapping("id/{userName}/{myId}")
