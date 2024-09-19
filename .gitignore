@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Application file config ###
-.application.properties
+application.properties
