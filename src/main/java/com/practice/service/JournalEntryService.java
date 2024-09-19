@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.practice.entity.JournalEntry;
 import com.practice.entity.User;
@@ -20,6 +21,7 @@ public class JournalEntryService {
 	
 	@Autowired UserService userService;
 
+	@Transactional
 	public void saveEntry(JournalEntry journalEntry, String userName) {
 		
 		journalEntry.setDate(LocalDateTime.now());
