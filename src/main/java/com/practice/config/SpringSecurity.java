@@ -41,6 +41,7 @@ class SpringSecurity {
         // Define authorization rules
         http.authorizeHttpRequests(authz -> authz
                         .requestMatchers("/journal/**", "/user/**").authenticated() // Secure these paths
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Secure these paths
                         .anyRequest().permitAll() // Allow all other paths
                 )
                 // Enable basic authentication
