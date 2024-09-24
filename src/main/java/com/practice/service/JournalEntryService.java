@@ -49,15 +49,20 @@ public class JournalEntryService {
 		return journalEntryRepository.findById(id);
 	}
 	
+	@Transactional
 	public void deleteById(ObjectId id, String userName)
 	{
-		User user = userService.findByUserName(userName);
-		user.getJournalEntries().removeIf(x -> x.getId().equals(id)); //this code deleted in both table (means constancy on current transaction)
-		userService.saveNewUser(user);
-		journalEntryRepository.deleteById(id);
-	}
-//	public List<JournalEntry> findByUserName(String userName)
-//	{
-//
-//	}
+        try {
+            User user = userService.findByUserName(userName);
+            boolean removed = user.getJournalEntries().removeIf(x -> x.getId().equals(id)); //this code deleted in both table (means constancy on current transaction)
+            if(removed) {
+                userService.saveUser(user);
+                journalEntryRepository.deleteById(id);
+            }
+        } catch (Exception e) {
+			System.out.println(e);
+            throw new RuntimeException("An Error occurred while deleting the entry.",e);
+        }
+    }
+
 }
