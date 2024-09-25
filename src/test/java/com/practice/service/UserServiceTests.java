@@ -16,14 +16,18 @@ public class UserServiceTests {
     @Autowired
     private UserRepository userRepository;
 
-
-    @Disabled
-    @Test
-    public void testFindByUserName()
+    @ParameterizedTest
+    @CsvSource({
+            "Karl",
+            "Thomas",
+            "Canady"
+    })
+    public void testFindByUserName(String name)
     {
-        assertNotNull(userRepository.findByUserName("Karl"));
+        assertNotNull(userRepository.findByUserName(name));
     }
 
+    @Disabled
     @ParameterizedTest
     @CsvSource({
             "1,1,2",
