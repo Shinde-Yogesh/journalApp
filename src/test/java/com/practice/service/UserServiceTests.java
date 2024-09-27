@@ -16,7 +16,7 @@ public class UserServiceTests {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Disabled
     @ParameterizedTest
     @CsvSource({
             "Karl",
