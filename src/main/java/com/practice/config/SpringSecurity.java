@@ -36,6 +36,7 @@ class SpringSecurity {
 //                .build();
 //    }
 
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Define authorization rules
