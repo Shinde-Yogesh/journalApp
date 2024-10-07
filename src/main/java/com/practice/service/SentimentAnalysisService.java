@@ -1,8 +1,8 @@
 package com.practice.service;
 
 public class SentimentAnalysisService {
-    public int getSentiment(String text)
+    public String getSentiment(String text)
     {
-        return 1;
+        return "";
     }
 }
