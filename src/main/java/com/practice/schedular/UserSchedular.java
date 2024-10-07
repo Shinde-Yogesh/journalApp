@@ -6,6 +6,7 @@ import com.practice.repository.UserRepositoryImpl;
 import com.practice.service.EmailService;
 import com.practice.service.SentimentAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class UserSchedular {
     @Autowired
     private SentimentAnalysisService sentimentAnalysisService;
 
+    @Scheduled(cron = "0 0 9 * * SUN")
     public void fetchUsersAndSendSaMail()
     {
         List<User> users = userRepository.getUserForSA();
