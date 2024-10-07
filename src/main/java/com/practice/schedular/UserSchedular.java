@@ -1,5 +1,6 @@
 package com.practice.schedular;
 
+import com.practice.cache.AppCache;
 import com.practice.entity.JournalEntry;
 import com.practice.entity.User;
 import com.practice.repository.UserRepositoryImpl;
@@ -24,6 +25,9 @@ public class UserSchedular {
     private UserRepositoryImpl userRepository;
 
     @Autowired
+    private AppCache appCache;
+
+    @Autowired
     private SentimentAnalysisService sentimentAnalysisService;
 
     @Scheduled(cron = "0 0 9 * * SUN")
@@ -38,5 +42,11 @@ public class UserSchedular {
             String sentiment = sentimentAnalysisService.getSentiment(entry);
             emailService.sendEmail(user.getEmail(),"Sentiment for last 7 Day's",sentiment);
         }
+    }
+
+    @Scheduled(cron = "0 0/10 * ? * * ")
+    public void clearAppCache()
+    {
+        appCache.init();
     }
 }
