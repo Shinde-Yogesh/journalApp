@@ -109,4 +109,20 @@ public class JournalEntryControllerV2 {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    //For the redis call for the journal entries
+
+    @GetMapping("/user")
+    public ResponseEntity<List<JournalEntry>> getAllJournalEntriesOfUserUsingRedis() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+
+        // Get journal entries using the service (cached or from DB)
+        List<JournalEntry> journalEntries = journalEntryService.getJournalEntries(userName);
+
+        if (journalEntries != null && !journalEntries.isEmpty()) {
+            return new ResponseEntity<>(journalEntries, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
