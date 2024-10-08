@@ -22,6 +22,9 @@ public class JournalEntryService {
 	
 	@Autowired UserService userService;
 
+	@Autowired
+	private RedisService redisService;
+
 	@Transactional
 	public void saveEntry(JournalEntry journalEntry, String userName) {
 		
@@ -68,4 +71,23 @@ public class JournalEntryService {
 		return removed;
     }
 
+
+    //Using the redis
+	public List<JournalEntry> getJournalEntries(String userName) {
+		// Check if journal entries are cached in Redis
+		List<JournalEntry> journalEntries = redisService.get("journal_entries_of_" + userName, List.class);
+		if (journalEntries != null) {
+			return journalEntries;
+		}
+
+		// Fetch journal entries from the database if not in cache
+		User user = userService.findByUserName(userName);
+		List<JournalEntry> all = user.getJournalEntries();
+
+		if (all != null && !all.isEmpty()) {
+			// Cache journal entries in Redis with a TTL (e.g., 5 minutes)
+			redisService.set("journal_entries_of_" + userName, all, 300L);
+		}
+		return all;
+	}
 }
