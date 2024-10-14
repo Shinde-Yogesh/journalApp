@@ -181,6 +181,9 @@ cd journalApp</code></pre>
       <li>😔 Sad: Encouraging email.</li>
       <li>😡 Angry: Calming message.</li>
     </ul>
+    <p>Click <strong>Here</strong> to see the response.</p>
+![image](https://github.com/user-attachments/assets/f6796efc-1c60-436f-aab3-7741e89e24cb)
+
   </li>
 </ol>
 
