@@ -139,8 +139,9 @@ cd journalApp</code></pre>
   </li>
   <li><strong>Response</strong>: 201 Created - Journal entry created successfully.</li>
 </ul>
-<p>Click <strong>Send</strong> to see the response.</p>
-<img src="![image](https://github.com/user-attachments/assets/f9c7171c-89a2-4dac-93d2-1d3de4d9e795)" alt="Postman Created Journal" />
+
+<p>Click <strong>Here</strong> to see the response.</p>
+![image](https://github.com/user-attachments/assets/2e54580b-a12c-41f6-8cb7-45edd0f8ecd5)
 
 <h3>2. Update a Journal Entry ✍️</h3>
 <ul>
